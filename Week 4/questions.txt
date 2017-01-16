@@ -1,0 +1,42 @@
+What’s stdint.h?
+A header file in the C standard library that defines specific exact-width integer types. It also includes their minimum and maximum
+allowable values.
+
+What’s the point of using uint8_t, uint32_t, int32_t, and uint16_t in a program?
+The use of those integer types (defined in stdint.h) allows for safe portability. Otherwise, it's possible that one system could treat 'int'
+as 16 bit and another as 32-bit. The use of these integers might also optimize program, as you allocate only a needed amount of memory.
+
+How many bytes is a BYTE, a DWORD, a LONG, and a WORD, respectively?
+BYTE = (unsigned) 8 bits/1 byte
+DWORD = (unsigned) 32 bits/4 bytes
+LONG = (signed) 32 bits/4 bytes
+WORD = (unsigned) 16 bits/2 bytes
+
+What (in ASCII, decimal, or hexadecimal) must the first two bytes of any BMP file be? Leading bytes used to identify file formats (with high probability) are generally called "magic numbers."
+bfType - The file type; must be BM.
+
+What’s the difference between bfSize and biSize?
+bfSize is the size, in bytes, of the bitmap file. biSize is the number of bytes required by the structure;
+
+What does it mean if biHeight is negative?
+The bitmap is a top-down DIB and its origin is the upper-left corner.
+
+What field in BITMAPINFOHEADER specifies the BMP’s color depth (i.e., bits per pixel)?
+The biBitCount specifies the number of bits-per-pixel.
+
+Why might fopen return NULL in lines 24 and 32 of copy.c?
+The fopen command was not successful, NULL is returned, and errno is set to indicate the error.
+
+Why is the third argument to fread always 1 in our code?
+The 1 causes the fread command to read 1 time from the stream pointed by the ptr data the of the size specified.
+
+
+What value does line 65 of copy.c assign to padding if bi.biWidth is 3?
+3 bytes
+
+What does fseek do?
+The fseek function sets the file position indicator for the stream pointed to by stream. The new position is obtained by adding offset bytes
+the position specified by whence.
+
+What is SEEK_CUR?
+A setting for whence which makes the offset value of fseek relative to the current position indicator.
