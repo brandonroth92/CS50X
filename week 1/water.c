@@ -5,5 +5,5 @@ int main(void)
 {
   printf("Minutes: ");
   int minutes = get_int();
-  printf("Bottles: %i\n", minutes * 12);
+  printf("Bottles: %i\n", minutes * 12); 
 }
