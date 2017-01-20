@@ -38,13 +38,7 @@ def search():
     # Loop through tweets list and inidividual tokens. Add each tweet to corresponding variable (positive, negative, neutral)
     for i in range(len(tweets)):
         tokens = tokenizer.tokenize(tweets[i])
-        sum = 0
-        for j in range(len(tokens)):
-            score = analyzer.analyze(tokens[j])
-            if score > 0:
-                sum += 1
-            if score < 0:
-                sum -= 1
+        sum = analyzer.analyze(tokens)
         if sum > 0:
             positive += 1
         elif sum < 0:

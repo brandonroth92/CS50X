@@ -28,11 +28,19 @@ class Analyzer():
         
     def analyze(self, text):
         
-        # Analyze text (word) for sentiment, returning its corresponding value
-        if text.lower() in self.pSet:
-            return 1
-        elif text.lower() in self.nSet:
-            return -1
-        return 0
+        if type(text) != list:
+            text = [text]
+        
+        # Loop through word or tweet list
+        for i in range(len(text)):
+            sum = 0
+            # Loop through token list and get sum of tweet using scores of individual tokens (words)
+            for j in range(len(text)):
+                if text[j].lower() in self.pSet:
+                    sum += 1
+                if text[j].lower() in self.nSet:
+                    sum -= 1
+            return sum
+
         
         

@@ -14,10 +14,10 @@ def main():
         sys.exit("Usage: ./tweet @screen-name")
     
     # Get 50 tweets and store list in variable 'tweet'    
-    tweet = get_user_timeline(sys.argv[1], 50)
+    tweets = get_user_timeline(sys.argv[1], 50)
     
     # Check if tweet retrieval failed. If so, exit with appropriate message
-    if tweet == None:
+    if tweets == None:
         sys.exit("Tweet return failed")
         
     # absolute paths to lists
@@ -28,24 +28,21 @@ def main():
     analyzer = Analyzer(positives, negatives)
     
     # Loop through tweet list
-    for i in range(len(tweet)):
-        # Create token list
-        tokens = tokenizer.tokenize(tweet[i])
-        sum = 0
-        # Loop through token list and get sum of tweet using scores of individual tokens (words)
-        for j in range(len(tokens)):
-            score = analyzer.analyze(tokens[j])
-            if score > 0:
-                sum += 1
-            if score < 0:
-                sum -= 1
+    for i in range(len(tweets)):
+        
+        # Create token list of individual tweets
+        tokens = tokenizer.tokenize(tweets[i])
+        
+        # Set sum equal to total sentiment value of all words in tweet
+        sum = analyzer.analyze(tokens)
+        
         # Print tweet in appropriate color
         if sum > 0:
-            print(colored("{: d} {}".format(sum, tweet[i]), "green"))
+            print(colored("{: d} {}".format(sum, tweets[i]), "green"))
         elif sum < 0:
-            print(colored("{} {}".format(sum, tweet[i]), "red"))
+            print(colored("{} {}".format(sum, tweets[i]), "red"))
         else:
-            print(colored("{: d} {}".format(sum, tweet[i]), "yellow"))
+            print(colored("{: d} {}".format(sum, tweets[i]), "yellow"))
             
     
 if __name__ == "__main__":
